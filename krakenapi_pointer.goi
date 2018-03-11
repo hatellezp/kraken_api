@@ -1,0 +1,59 @@
+public methods :
+        Time
+        Assets
+        AssetPairs
+        Ticker
+        OHLC
+        Depth
+        Trades
+        Spread
+
+private methods :
+       Balance
+       TradeBalance
+       OpenOrders
+       CloseOrders
+       QueryOrders
+       TradeHistory
+       QueryTrades
+       OpenPositions
+       Ledgers
+       QueryLedgers
+       TradeVolume
+       AddOrder
+       CancelOrder
+       DepositMethods
+       DepositAdresses
+       DepositStatus
+       WithdrawInfo
+       Withdraw
+       WithdrawStatus
+       WithdrawCancel
+
+functions :
+          New (call NewWithClient)
+          NewWithClient (create a new krakenapi client)
+          (this functions has the same names as the methods of the kraken api)
+          Time (pass nothing, krakenapi bounded) (*TimeReponse, error)
+          Assets (same) (*AssetsReponse, error)
+          AssetPairs (same) (*AssetPairsReponse, error)
+          Ticker (pairs of currency, e.g. 'XXBTZEUR', or nothing) (*TickerReponse, error)
+          Trades (pair string, since int64) (*TradesReponse, error)
+          Balance (*BalanceReponse, error)
+          OpenOrders(map[string]string?) (*OpenOrdersReponse, error)
+          ClosedOrders(same as OpenOrders) (*ClosedOrdersReponse, error)
+          Depth(pair string, count int) (*OrderBook, error)
+          CancelOrder(txtid string) (*CancelOrderResponse, error)
+          QueryOrders(txtids string, arg map[string]string) (*QueryOrdersReponse, error)
+          AddOrder(pair string, direction string orderType string, volume string, args map[string]string) (*AddOrderResponse, error)
+          Query(method string, data map[string]string) (interface{}, error)
+          queryPublic(method string, values url.Values, typ interface{}) (interface{}, error)
+          queryPrivate(method string, values url.Values, typ interface{}) (interface{}, error)
+          doRequest(reqUrl string, values url.Values, headers map[string]string, typ interface{}) (interface{}, error)
+          isStringSlice(term string, list []string) bool
+          getSha256(input []byte) []byte
+          getHMacSha512(message, secret []byte) []byte
+          createSignature(urlPath string, values url.Values, secret []byte) string
+
+TODO :
+     must implements OHLC method !!!!!!!
