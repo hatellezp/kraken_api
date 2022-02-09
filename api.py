@@ -2,13 +2,6 @@ import krakenex
 import pandas as pd
 import time
 
-# TODO: see which methods do not require authentication and set them to
-#       static methods
-# TODO: I'm raising exceptions everywhere, this cannot happen, I need to account
-#       for this situations
-# TODO: make a None default for missing columns !
-# TODO: there is a difference between trades and orders !!!
-
 # documentation for:
 # - krakenex: https://python3-krakenex.readthedocs.io/en/stable/
 # - kraken: https://docs.kraken.com/rest/
