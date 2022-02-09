@@ -11,7 +11,6 @@ class Kapi:
 
     def __init__(
             self,
-            max_amount,
             test_session=True,
             account_type="starter",
             key="",
@@ -23,7 +22,6 @@ class Kapi:
 
         :param live_connection:
         :param test_session:
-        :param max_amount: max amount allowed to use for trade
         :param key: the key used for kraken authentication
         :param secret: the secret used for kraken authentication
         """
@@ -32,17 +30,12 @@ class Kapi:
             raise Exception(
                 f"Invalid parameter for account_type: {account_type}")
 
-        if not isinstance(max_amount, int) and not isinstance(
-                max_amount, float):
-            raise Exception(f"Invalid parameter for max_amount: {max_amount}")
-
         if not isinstance(test_session, bool):
             raise Exception(
                 f"Invalid parameter for test_section: {test_session}")
 
         self._api = krakenex.API(key, secret)
         self._test_session = test_session
-        self._max_amount = max_amount
         self._account_type = account_type
 
         self._max_api_counter = {
