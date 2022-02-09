@@ -456,7 +456,6 @@ class Kapi:
         else:
             return res
 
-    # TODO: I'm going to trim the time in this function !!!!!!!!!!!!!!!!!
     def query_trades(self, pair, since=None):
         """
 
@@ -629,7 +628,6 @@ class Kapi:
         else:
             return res
 
-    # TODO: see how to include the 'trades' argument here
     def query_open_orders(self, trades=False, userref=None):
         """
 
@@ -1057,7 +1055,6 @@ class Kapi:
         else:
             return res
 
-    # TODO: this method is to be tested with real world data !!!
     def query_open_positions(self, txid, docalcs=False,
                              consolidation="market"):
         """
@@ -1239,7 +1236,7 @@ class Kapi:
     # ==========================================================================
 
     # ==========================================================================
-    # public methods tailored by me
+    # useful methods
 
     def test_connection(self):
         """
@@ -1264,129 +1261,9 @@ class Kapi:
             "max_ratecount": self._max_rate_count
         }
 
-    def get_prices_history(
-            self,
-            from_timestamp,
-            to_timestamp,
-            assets,
-            timestep='min'):
-        """
 
-        :param from_timestamp: from when the history should be taken
-        :param to_timestamp:  to when
-        :param assets: a list of assets to get the history (e.g. ["BTC", "ETH", ..])
-        :param timestep: what is the step to take
-        :return:
-        """
-
-        if timestep not in ['sec', 'min', 'hour', 'day']:
-            raise Exception(f"Unknown timestep: {timestep}")
-
-        pass
-
-    def get_trade_history(self, from_timestamp, to_timestamp, pairs):
-        """
-
-        :param from_timestamp:
-        :param to_timestamp:
-        :param pairs: a list of pairs to get the trades (e.g ["EURBCT"...] not sure about the
-            writing though)
-        :return:
-        """
-        pass
-
-    def get_assets(self):
-        """
-
-        :return: should return a list of pairs [("BTC", moneny on BTC), ...]
-        """
-        pass
-
-    def get_currency(self):
-        """
-
-        :return: the current money that we have
-        """
-        pass
-
-    def get_asset_price(self, asset, currency="EUR"):
-        """
-
-        :param currency: a currency to get the price of the asset in
-        :return: the current price of the asset for the currency
-        """
-        pass
-
-    def _put_order(
-            self,
-            pair,
-            amount,
-            direction,
-            order_type,
-            current_hold_amount=None,
-            **kwargs):
-        """
-
-        :param pair: for example "EURBTC" means buy or sell BTC for euros
-        :param direction: to buy or to sell
-        :param order_type: limit or others
-        :param kwargs: I think it will depend on the order type
-        :return: the id of the order (I think)
-        """
-
-        if direction not in ["sell", "buy"]:
-            raise Exception(f"Unknown type of direction: {direction}")
-        else:
-            if direction == "buy" and self._test_session and not self.can_buy_with_amount(
-                    amount, self._max_amount, current_hold_amount):
-                raise Exception(
-                    f"Cannot buy that amount, ouf of bonds: max amount: {self._max_amount}, amount to trade: {amount}")
-            elif direction == "buy" and not self._test_session and not self.can_buy_with_amount(amount, self._max_amount, self.get_currency()):
-                raise Exception(
-                    f"Cannot buy that amount, ouf of bonds: max amount: {self._max_amount}, amount to trade: {amount}, current amount hold: {self.get_currency()}")
-            else:
-                pass
-
-    def buy_order(self, pair, amount, order_type, **kwargs):
-        self._put_order(pair, amount, "buy", order_type, kwargs)
-
-    def sell_order(self, pair, amount, order_type, **kwargs):
-        self._put_order(pair, amount, "sell", order_type, kwargs)
-
-    def cancel_order(self, order_id) -> bool:
-        """
-
-        :param order_id:  the id of the order to cancel
-        :return: True if the order was successfully cancelled, False otherwise
-        """
-        pass
-
-    def can_buy_with_amount(
-            self,
-            amount_to_trade,
-            max_amount,
-            current_hold_amount=None):
-        """
-
-        :param amount_to_trade: the amount we want to trade
-        :param max_amount: the maximal amount of currency allowed to trade
-        :param current_hold_amount: in test mode the current hold amount is provided
-        :return:
-        """
-        if self._test_session and current_hold_amount is None:
-            raise Exception(
-                "For a test section a current amount must be provided")
-        elif self._test_session:
-            return amount_to_trade + current_hold_amount <= max_amount
-        else:
-            pass
-
-
-# def utility function
 def is_none_or_type(o, t):
     return o is None or isinstance(o, t)
-
-# utility for joining list of str values
 
 
 def output_or_join_list(obj):
