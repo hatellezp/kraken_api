@@ -31,13 +31,15 @@ To create an instance of `Kapi` simply do:
     from kraken_api import Kapi
     kapi = Kapi()
 
+
 The ``__init__`` parameters are:
-    * `test_session`: if it is to be a test session or not, this will by default **only validate and not post orders**
-    * `account_type`: your type of account if connecting to your use account in kraken, three types are possibles (this will affect certain API calls parameters):
-        * ``"starter"``
-        * ``"intermediate"``
-        * ``"pro"``
-    * ``key`` and ``secret``: if you are effectively connecting to your kraken account then you must generate an API key for this library to connect to Kraken.
+
+* `test_session`: if it is to be a test session or not, this will by default only **validate** and not post orders
+* `account_type`: your type of account if connecting to your use account in kraken, three types are possibles (this will affect certain API calls parameters):
+    * ``"starter"``
+    * ``"intermediate"``
+    * ``"pro"``
+* ``key`` and ``secret``: if you are effectively connecting to your kraken account then you must generate an API key for this library to connect to Kraken.
 
 Return form
 -----------
