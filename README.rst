@@ -45,7 +45,7 @@ The ``__init__`` parameters are:
 Return form
 -----------
 
-Whenever possible (*and useful*) the returnded information is given in form of a
+Whenever possible (*and useful*) the returned information is given in form of a
 pandas_ *dataframe*.
 
 .. _pandas : https://pandas.pydata.org
@@ -137,8 +137,9 @@ Go see the documentation_ for a full description of each API call.
 In development
 --------------
 
+* all missing methods
 * an api and rate counter to allow know if we are near the limit, see `rate limits`_
-* test for each method
+* tests for each method
 * correctly parsing of errors returned by Kraken
 
 .. _rate limits: https://docs.kraken.com/rest/#section/Rate-Limits
