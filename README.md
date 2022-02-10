@@ -35,16 +35,47 @@ The `__init__` parameters are:
     - `"intermediate"`
     - `"pro"`
   - `key` and `secret`: if you are effectively connecting to your kraken account then
-  you must
+  you must generate an API key for this library to connect to Kraken.
 
 ### Return form
 
 Whenever possible (_and useful_) the returnded information is given in form of a 
 [pandas](https://pandas.pydata.org) _dataframe_.
+The call
+
+```python
+import kraken_api
+from kraken_api import Kapi 
+
+kapi = Kapi()
+
+result = kapi.query_asset_pairs()
+```
+
+will produce an answer alike to this:
+
+```jupyterpython
+      altname     wsname aclass_base   base  ... fee_volume_currency margin_call margin_stop ordermin
+0    1INCHEUR  1INCH/EUR    currency  1INCH  ...                ZUSD          80          40        1
+1    1INCHUSD  1INCH/USD    currency  1INCH  ...                ZUSD          80          40        1
+2     AAVEAUD   AAVE/AUD    currency   AAVE  ...                ZUSD          80          40     0.02
+3     AAVEETH   AAVE/ETH    currency   AAVE  ...                ZUSD          80          40     0.02
+4     AAVEEUR   AAVE/EUR    currency   AAVE  ...                ZUSD          80          40     0.02
+..        ...        ...         ...    ...  ...                 ...         ...         ...      ...
+430    ZRXGBP    ZRX/GBP    currency    ZRX  ...                ZUSD          80          40        5
+431    ZRXUSD    ZRX/USD    currency    ZRX  ...                ZUSD          80          40        5
+432    ZRXXBT    ZRX/XBT    currency    ZRX  ...                ZUSD          80          40        5
+433    USDCAD    USD/CAD    currency   ZUSD  ...                ZUSD          80          40       10
+434    USDJPY    USD/JPY    currency   ZUSD  ...                ZUSD          80          40       10
+
+```
 
 
 
 ### API methods implemented
+Go see the [documentaion](https://docs.kraken.com/rest) for a full description of each
+API call.
+
 - Public
   - [x] Time
   - [x] SystemStatus
