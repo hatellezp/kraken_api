@@ -17,7 +17,7 @@ Implementation
 Methods detailed
 ----------------
 
-All **API** methods have the *query* word prefixed, that is, for te **API** method
+All **API** methods have the *query* word prefixed, that is, for the **API** method
 *QueryTrades* there is the corresponding function ``query_query_trades`` and for
 the method *AddOrder* there is the corresponding function ``query_add_order``.
 
@@ -34,87 +34,108 @@ To create an instance of `Kapi` simply do:
 The ``__init__`` parameters are:
     * `test_session`: if it is to be a test session or not, this will by default **only validate and not post orders**
     * `account_type`: your type of account if connecting to your use account in kraken, three types are possibles (this will affect certain API calls parameters):
-        * `"starter"`
-        * `"intermediate"`
-        * `"pro"`
-    * `key` and `secret`: if you are effectively connecting to your kraken account then you must generate an API key for this library to connect to Kraken.
+        * ``"starter"``
+        * ``"intermediate"``
+        * ``"pro"``
+    * ``key`` and ``secret``: if you are effectively connecting to your kraken account then you must generate an API key for this library to connect to Kraken.
 
-### Return form
+Return form
+-----------
 
-Whenever possible (_and useful_) the returnded information is given in form of a 
-[pandas](https://pandas.pydata.org) _dataframe_.
+Whenever possible (*and useful*) the returnded information is given in form of a
+pandas_ *dataframe*.
+
+.. _pandas : https://pandas.pydata.org
+
 The call
 
-```python
-import kraken_api
-from kraken_api import Kapi 
+.. code::
 
-kapi = Kapi()
+    import kraken_api
+    from kraken_api import Kapi
 
-result = kapi.query_asset_pairs()
-```
+    kapi = Kapi()
+    result = kapi.query_asset_pairs()
 
 will produce an answer alike to this:
 
-```jupyterpython
-      altname     wsname aclass_base   base  ... fee_volume_currency margin_call margin_stop ordermin
-0    1INCHEUR  1INCH/EUR    currency  1INCH  ...                ZUSD          80          40        1
-1    1INCHUSD  1INCH/USD    currency  1INCH  ...                ZUSD          80          40        1
-2     AAVEAUD   AAVE/AUD    currency   AAVE  ...                ZUSD          80          40     0.02
-3     AAVEETH   AAVE/ETH    currency   AAVE  ...                ZUSD          80          40     0.02
-4     AAVEEUR   AAVE/EUR    currency   AAVE  ...                ZUSD          80          40     0.02
-..        ...        ...         ...    ...  ...                 ...         ...         ...      ...
-430    ZRXGBP    ZRX/GBP    currency    ZRX  ...                ZUSD          80          40        5
-431    ZRXUSD    ZRX/USD    currency    ZRX  ...                ZUSD          80          40        5
-432    ZRXXBT    ZRX/XBT    currency    ZRX  ...                ZUSD          80          40        5
-433    USDCAD    USD/CAD    currency   ZUSD  ...                ZUSD          80          40       10
-434    USDJPY    USD/JPY    currency   ZUSD  ...                ZUSD          80          40       10
+.. code::
 
-```
-
+          altname     wsname aclass_base   base  ... fee_volume_currency margin_call margin_stop ordermin
+    0    1INCHEUR  1INCH/EUR    currency  1INCH  ...                ZUSD          80          40        1
+    1    1INCHUSD  1INCH/USD    currency  1INCH  ...                ZUSD          80          40        1
+    2     AAVEAUD   AAVE/AUD    currency   AAVE  ...                ZUSD          80          40     0.02
+    3     AAVEETH   AAVE/ETH    currency   AAVE  ...                ZUSD          80          40     0.02
+    4     AAVEEUR   AAVE/EUR    currency   AAVE  ...                ZUSD          80          40     0.02
+    ..        ...        ...         ...    ...  ...                 ...         ...         ...      ...
+    430    ZRXGBP    ZRX/GBP    currency    ZRX  ...                ZUSD          80          40        5
+    431    ZRXUSD    ZRX/USD    currency    ZRX  ...                ZUSD          80          40        5
+    432    ZRXXBT    ZRX/XBT    currency    ZRX  ...                ZUSD          80          40        5
+    433    USDCAD    USD/CAD    currency   ZUSD  ...                ZUSD          80          40       10
+    434    USDJPY    USD/JPY    currency   ZUSD  ...                ZUSD          80          40       10
 
 
-### API methods implemented
-Go see the [documentaion](https://docs.kraken.com/rest) for a full description of each
-API call.
+API methods implemented
+-----------------------
+Go see the documentation_ for a full description of each API call.
 
-- Public
-  - [x] Time
-  - [x] SystemStatus
-  - [x] Assets
-  - [x] AssetPairs
-  - [x] Ticker
-  - [x] OHLC
-  - [x] Depth
-  - [x] Trades
-  - [x] Spread
-- Private
-  - User Data:
-    - [x] Balance
-    - [x] TradeBalance
-    - [x] OpenOrders
-    - [x] ClosedOrders
-    - [x] QueryOrders
-    - [x] TradesHistory
-    - [x] QueryTrades
-    - [] OpenPositions (__to be tested__)
-    - [] Ledgers
-    - [] QueryLedgers
-    - [] TradeVolume
-    - [] AddExport
-    - [] ExportStatus
-    - [] RetrieveExport
-    - [] RemoveExport
-  - User Trading:
-    - [x] AddOrder
-    - [x] CancelOrder
-    - [] CancelAll
-    - [] CancelAllOrdersAfter
-  - User Funding:
-    - ...
-  - User Staking:
-    - ...
-  - Websockets Authentication
-    - ...
-  
+.. _documentation: https://docs.kraken.com/rest
+
+
+.. |check| raw:: html
+
+    <input checked=""  type="checkbox">
+
+.. |check_| raw:: html
+
+    <input checked=""  disabled="" type="checkbox">
+
+.. |uncheck| raw:: html
+
+    <input type="checkbox">
+
+.. |uncheck_| raw:: html
+
+    <input disabled="" type="checkbox">
+
+
+* Public
+    * |check| Time
+    * |check| SystemStatus
+    * |check| Assets
+    * |check| AssetPairs
+    * |check| Ticker
+    * |check| OHLC
+    * |check| Depth
+    * |check| Trades
+    * |check| Spread
+* Private
+    * User Data:
+        * |check| Balance
+        * |check| TradeBalance
+        * |check| OpenOrders
+        * |check| ClosedOrders
+        * |check| QueryOrders
+        * |check| TradesHistory
+        * |check| QueryTrades
+        * |uncheck| OpenPositions (**to be tested**)
+        * |uncheck| Ledgers
+        * |uncheck| QueryLedgers
+        * |uncheck| TradeVolume
+        * |uncheck| AddExport
+        * |uncheck| ExportStatus
+        * |uncheck| RetrieveExport
+        * |uncheck| RemoveExport
+    * User Trading:
+        * |check| AddOrder
+        * |check| CancelOrder
+        * |uncheck| CancelAll
+        * |uncheck| CancelAllOrdersAfter
+    * User Funding:
+        * ...
+    * User Staking:
+        * ...
+    * Websockets Authentication
+        * ...
+
     
