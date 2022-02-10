@@ -1,30 +1,34 @@
-## Introduction
+Introduction
+============
 
-The exchange platform [Kraken](https://www.kraken.com) allows to trade cryptocurrencies and
+The exchange platform Kraken_ allows to trade cryptocurrencies and
 some other features.
 
-This library tries to implement most of the methods of the 
-[Kraken API](https://docs.kraken.com/rest).
-It uses the well done library [krakenex](https://github.com/veox/python3-krakenex) to make 
-the queries.
+This library tries to implement most of the methods of the `Kraken API`_.
+It uses the well done library krakenex_  to make the queries.
 
-## Implementation
+.. _Kraken: https://www.kraken.com
+.. _Kraken API: https://docs.kraken.com/rest
+.. _krakenex: https://github.com/veox/python3-krakenex
 
-### Methods detailed
+Implementation
+==============
 
-All __API__ methods have the _query_ word prefixed, that is for te __API__ method
-_QueryTrades_ there is the corresponding function `query_query_trades` and for the method
-_AddOrder_ there is the correspoding function `query_add_order`. 
+Methods detailed
+----------------
 
-### Instance of `Kapi`
+All **API** methods have the *query* word prefixed, that is, for te **API** method
+*QueryTrades* there is the corresponding function ``query_query_trades`` and for
+the method *AddOrder* there is the corresponding function ``query_add_order``.
+
+Instance of `Kapi`
+------------------
 
 To create an instance of `Kapi` simply do:
-```python
-import kraken_api                            
-from kraken_api import Kapi
-
-kapi = Kapi()  
-```
+.. code::python
+        import kraken_api
+        from kraken_api import Kapi
+        kapi = Kapi()
 
 The `__init__` parameters are:
   - `test_session`: if it is to be a test session or not, this will by default 
