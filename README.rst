@@ -120,14 +120,6 @@ Go see the documentation_ for a full description of each API call.
         * |check| QueryOrders
         * |check| TradesHistory
         * |check| QueryTrades
-        * |uncheck| OpenPositions (**to be tested**)
-        * |uncheck| Ledgers
-        * |uncheck| QueryLedgers
-        * |uncheck| TradeVolume
-        * |uncheck| AddExport
-        * |uncheck| ExportStatus
-        * |uncheck| RetrieveExport
-        * |uncheck| RemoveExport
     * User Trading:
         * |check| AddOrder
         * |check| CancelOrder
@@ -140,4 +132,13 @@ Go see the documentation_ for a full description of each API call.
     * Websockets Authentication
         * ...
 
+
+In development
+--------------
+
+* an api and rate counter to allow know if we are near the limit, see `rate limits`_
+* test for each method
+* correctly parsing of errors returned by Kraken
+
+.. _rate limits: https://docs.kraken.com/rest/#section/Rate-Limits
     

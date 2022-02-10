@@ -1220,10 +1220,25 @@ class Kapi:
             return res
 
     def query_cancel_all(self):
-        pass
+        res = self._private_query("CancelAll")
+        self._update_counters("cancel_order")
+
+        if "result" in res:
+            return res["result"]
+        else:
+            return res
+
 
     def query_cancel_all_orders_after(self, timeout):
-        pass
+        data = {"timeout": timeout}
+
+        res = self._private_query("CancelAllOrdersAfter")
+        self._update_counters("cancel_order")
+
+        if "result" in res:
+            return res["result"]
+        else:
+            return res
 
     # end of query user trading
     # ==========================================================================
