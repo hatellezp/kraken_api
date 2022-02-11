@@ -62,7 +62,7 @@ The call
 
 will produce an answer alike to this:
 
-.. code::
+.. code:: jupyter
 
           altname     wsname aclass_base   base  ... fee_volume_currency margin_call margin_stop ordermin
     0    1INCHEUR  1INCH/EUR    currency  1INCH  ...                ZUSD          80          40        1
