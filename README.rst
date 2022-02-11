@@ -52,7 +52,7 @@ pandas_ *dataframe*.
 
 The call
 
-.. code::
+.. code:: python
 
     import kraken_api
     from kraken_api import Kapi
