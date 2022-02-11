@@ -80,7 +80,8 @@ class Kapi:
             raise Exception(f"Invalid type query parameter: {type_query}")
 
         if type_query == ["cancel_order", "add_order"] and pair is None:
-            raise Exception(f"You must provide a pair when adding or cancelling orders")
+            raise Exception(
+                f"You must provide a pair when adding or cancelling orders")
 
         if self._last_query_time is None:
             self._last_query_time = time.time()
@@ -123,9 +124,6 @@ class Kapi:
 
                 self._order_rate_counter += augment
 
-
-
-    # wrapper over all other public query methods
     def _public_query(self, method, data=None):
         """
 
@@ -151,17 +149,17 @@ class Kapi:
     # ===========================================================================
     # these are all the market data methods of the kraken api
 
-    def query_time(self):
+    def time(self):
         res = self._public_query("Time")
         self._update_counters("other")
         return res
 
-    def query_system_status(self):
+    def system_status(self):
         res = self._public_query("SystemStatus")
         self._update_counters("other")
         return res
 
-    def query_assets(self, asset=None, aclass="currency"):
+    def assets(self, asset=None, aclass="currency"):
         """
         Get information about the assets that are available for deposit,
         withdrawal, trading and staking.
@@ -200,7 +198,7 @@ class Kapi:
         else:
             return res
 
-    def query_asset_pairs(self, pair=None, info="info"):
+    def asset_pairs(self, pair=None, info="info"):
         """
 
         :param pair: a list of pairs to get info on or a lone pair as a string,
@@ -281,7 +279,7 @@ class Kapi:
         else:
             return res
 
-    def query_ticker(self, pair):
+    def ticker(self, pair):
         """
 
         :param pair: a pair to get the current ticker info on
@@ -344,7 +342,7 @@ class Kapi:
         else:
             return res
 
-    def query_ohlc(self, pair, interval=1, since=None):
+    def ohlc(self, pair, interval=1, since=None):
         """
 
         :param pair: pair to the the OHLC data on
@@ -397,7 +395,7 @@ class Kapi:
         else:
             return res
 
-    def query_depth(self, pair, count=100):
+    def depth(self, pair, count=100):
         """
         get the order book for a given pair
 
@@ -449,7 +447,7 @@ class Kapi:
         else:
             return res
 
-    def query_trades(self, pair, since=None):
+    def trades(self, pair, since=None):
         """
 
         return the last trades (last 1000 trades by default)
@@ -499,7 +497,7 @@ class Kapi:
         else:
             return res
 
-    def query_spread(self, pair, since=None):
+    def spread(self, pair, since=None):
         """
 
         :param pair: the asset pair to get the data on
@@ -545,7 +543,7 @@ class Kapi:
     # ==========================================================================
     # query user data
 
-    def query_balance(self):
+    def balance(self):
         """
 
         get the balance of the account in a data frame
@@ -574,7 +572,7 @@ class Kapi:
         else:
             return res
 
-    def query_trade_balance(self, asset="ZEUR"):
+    def trade_balance(self, asset="ZEUR"):
         """
 
         :param asset: the asset to get the trade info on
@@ -621,7 +619,7 @@ class Kapi:
         else:
             return res
 
-    def query_open_orders(self, trades=False, userref=None):
+    def open_orders(self, trades=False, userref=None):
         """
 
         get info on the current open orders
@@ -706,7 +704,7 @@ class Kapi:
         else:
             return res
 
-    def query_closed_orders(
+    def closed_orders(
             self,
             trades=False,
             userref=None,
@@ -730,7 +728,8 @@ class Kapi:
                 not is_none_or_type(end, int) or
                 not is_none_or_type(ofs, int) or
                 closetime not in ["both", "open", "close"]):
-            raise Exception(f"Invalid parameter, please verify: {trades}, {userref}, {start}, {end}, {ofs}, {closetime}")
+            raise Exception(
+                f"Invalid parameter, please verify: {trades}, {userref}, {start}, {end}, {ofs}, {closetime}")
 
         data = {"trades": str(trades).lower(), "closetime": closetime}
 
@@ -814,7 +813,7 @@ class Kapi:
         else:
             return res
 
-    def query_query_orders(self, txid, trades=False, userref=None):
+    def query_orders(self, txid, trades=False, userref=None):
         """
         retrieve information about specific orders
 
@@ -908,7 +907,7 @@ class Kapi:
         else:
             return res
 
-    def query_trades_history(
+    def trades_history(
             self,
             type="all",
             trades=False,
@@ -944,7 +943,8 @@ class Kapi:
                     int) or not is_none_or_type(
                         ofs,
                 int):
-            raise Exception(f"Invalid parameters: {type}, {trades}, {start}, {end}, {ofs}")
+            raise Exception(
+                f"Invalid parameters: {type}, {trades}, {start}, {end}, {ofs}")
 
         data = {"trades": str(trades).lower(), "type": type}
         if start is not None:
@@ -994,7 +994,7 @@ class Kapi:
         else:
             return res
 
-    def query_query_trades(self, txid, trades=False):
+    def query_trades(self, txid, trades=False):
         """
         retrieve information about specific trades/fills
 
@@ -1048,8 +1048,8 @@ class Kapi:
         else:
             return res
 
-    def query_open_positions(self, txid, docalcs=False,
-                             consolidation="market"):
+    def open_positions(self, txid, docalcs=False,
+                       consolidation="market"):
         """
         get information about open margin positions
 
@@ -1119,24 +1119,24 @@ class Kapi:
     # ==========================================================================
     # query user trading
 
-    def query_add_order(self,
-                        ordertype,
-                        buy_or_sell,
-                        volume,
-                        pair,
-                        price,
-                        price2=None,
-                        userref=None,
-                        leverage=None,
-                        oflags=None,
-                        starttm=0,
-                        expiretm=0,
-                        close_ordertype=None,
-                        close_price=None,
-                        close_price2=None,
-                        deadline=None,
-                        validate=False,
-                        ):
+    def add_order(self,
+                  ordertype,
+                  buy_or_sell,
+                  volume,
+                  pair,
+                  price,
+                  price2=None,
+                  userref=None,
+                  leverage=None,
+                  oflags=None,
+                  starttm=0,
+                  expiretm=0,
+                  close_ordertype=None,
+                  close_price=None,
+                  close_price2=None,
+                  deadline=None,
+                  validate=False,
+                  ):
 
         if ordertype not in ["market", "limit", "stop-loss", "take-profit", "stop-loss-limit",
                              "take-profit-limit", "settle-position"]:
@@ -1146,13 +1146,18 @@ class Kapi:
             raise Exception(f"Invalid parameter buy_or_sell: {buy_or_sell}")
 
         if volume < 0:
-            raise Exception("Invalid parameter volume, the volume must be positive")
+            raise Exception(
+                "Invalid parameter volume, the volume must be positive")
 
-        if ordertype in ["stop-loss-limit", "take-profit-limit"] and price2 is None:
-            raise Exception("Invalid parameters, price2 must be specified for the given ordertype")
+        if ordertype in ["stop-loss-limit",
+                         "take-profit-limit"] and price2 is None:
+            raise Exception(
+                "Invalid parameters, price2 must be specified for the given ordertype")
 
-        if close_ordertype is not None and close_ordertype not in ["limit", "stop-loss", "take-profit", "stop-loss-limit", "take-profit-limit"]:
-            raise Exception(f"Invalid parameter close_ordertype: {close_ordertype}")
+        if close_ordertype is not None and close_ordertype not in [
+                "limit", "stop-loss", "take-profit", "stop-loss-limit", "take-profit-limit"]:
+            raise Exception(
+                f"Invalid parameter close_ordertype: {close_ordertype}")
 
         if validate not in [False, True]:
             raise Exception(f"Invalid parameter validate: {validate}")
@@ -1196,9 +1201,7 @@ class Kapi:
         else:
             return res
 
-
-
-    def query_cancel_order(self, txid):
+    def cancel_order(self, txid):
         data = {"txid": txid}
 
         res = self._private_query("CancelOrder", data=data)
@@ -1209,7 +1212,7 @@ class Kapi:
         else:
             return res
 
-    def query_cancel_all(self):
+    def cancel_all(self):
         res = self._private_query("CancelAll")
         self._update_counters("cancel_order")
 
@@ -1218,11 +1221,10 @@ class Kapi:
         else:
             return res
 
-
-    def query_cancel_all_orders_after(self, timeout):
+    def cancel_all_orders_after(self, timeout):
         data = {"timeout": timeout}
 
-        res = self._private_query("CancelAllOrdersAfter")
+        res = self._private_query("CancelAllOrdersAfter", data)
         self._update_counters("cancel_order")
 
         if "result" in res:

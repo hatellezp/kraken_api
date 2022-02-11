@@ -17,9 +17,9 @@ Implementation
 Methods detailed
 ----------------
 
-All **API** methods have the *query* word prefixed, that is, for the **API** method
-*QueryTrades* there is the corresponding function ``query_query_trades`` and for
-the method *AddOrder* there is the corresponding function ``query_add_order``.
+All **API** methods have the same names as the Kraken API, that is, for the **API** method
+*QueryTrades* there is the corresponding function ``query_trades`` and for
+the method *AddOrder* there is the corresponding function ``add_order``.
 
 Instance of `Kapi`
 ------------------
