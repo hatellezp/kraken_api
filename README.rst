@@ -26,7 +26,7 @@ Instance of `Kapi`
 
 To create an instance of `Kapi` simply do:
 
-.. code::
+.. code:: python
 
     import kraken_api
     from kraken_api import Kapi
