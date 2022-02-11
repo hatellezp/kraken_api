@@ -1126,11 +1126,9 @@ class Kapi:
                         pair,
                         price,
                         price2=None,
-                        trigger="last",
                         userref=None,
                         leverage=None,
                         oflags=None,
-                        timeinforce="GTC",
                         starttm=0,
                         expiretm=0,
                         close_ordertype=None,
@@ -1153,12 +1151,6 @@ class Kapi:
         if ordertype in ["stop-loss-limit", "take-profit-limit"] and price2 is None:
             raise Exception("Invalid parameters, price2 must be specified for the given ordertype")
 
-        if trigger not in ["last", "index"]:
-            raise Exception(f"Invalid parameter trigger: {trigger}")
-
-        if timeinforce not in ["GTC", "IOC", "GTD"]:
-            raise Exception(f"Invalid parameter timeinforce: {timeinforce}")
-
         if close_ordertype is not None and close_ordertype not in ["limit", "stop-loss", "take-profit", "stop-loss-limit", "take-profit-limit"]:
             raise Exception(f"Invalid parameter close_ordertype: {close_ordertype}")
 
@@ -1174,8 +1166,6 @@ class Kapi:
             "pair": pair,
             "volume": volume,
             "price": price,
-            # "trigger": trigger,  # this argument does not see to work
-            # "timeinforce": timeinforce,  # this argument does not work
             "starttm": starttm,
             "expiretm": expiretm,
             "validate": str(validate).lower(),
