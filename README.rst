@@ -58,7 +58,7 @@ The call
     from kraken_api import Kapi
 
     kapi = Kapi()
-    result = kapi.query_asset_pairs()
+    result = kapi.asset_pairs()
 
 will produce an answer alike to this:
 
