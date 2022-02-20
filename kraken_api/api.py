@@ -290,6 +290,7 @@ class Kapi:
 
         if "result" in res:
             columns = [
+                "currency",
                 "ask",
                 "ask_whole_lot_volume",
                 "ask_lot_volume",
@@ -311,31 +312,34 @@ class Kapi:
                 "today_opening_price",
             ]
 
-        data = pd.DataFrame(columns=columns)
-        data_raw = res["result"]
+            data = pd.DataFrame(columns=columns)
+            data_raw = res["result"]
 
-        for currency in data_raw:
-            inner_df = pd.DataFrame([[
-                data_raw[currency]["a"][0],
-                data_raw[currency]["a"][1],
-                data_raw[currency]["a"][2],
-                data_raw[currency]["b"][0],
-                data_raw[currency]["b"][1],
-                data_raw[currency]["b"][2],
-                data_raw[currency]["c"][0],
-                data_raw[currency]["c"][1],
-                data_raw[currency]["v"][0],
-                data_raw[currency]["v"][1],
-                data_raw[currency]["p"][0],
-                data_raw[currency]["p"][1],
-                data_raw[currency]["t"][0],
-                data_raw[currency]["t"][1],
-                data_raw[currency]["l"][0],
-                data_raw[currency]["l"][1],
-                data_raw[currency]["h"][0],
-                data_raw[currency]["h"][1],
-                data_raw[currency]["o"],
-            ]], columns=columns)
+            for currency in data_raw:
+                values = [
+                    currency,
+                    data_raw[currency]["a"][0],
+                    data_raw[currency]["a"][1],
+                    data_raw[currency]["a"][2],
+                    data_raw[currency]["b"][0],
+                    data_raw[currency]["b"][1],
+                    data_raw[currency]["b"][2],
+                    data_raw[currency]["c"][0],
+                    data_raw[currency]["c"][1],
+                    data_raw[currency]["v"][0],
+                    data_raw[currency]["v"][1],
+                    data_raw[currency]["p"][0],
+                    data_raw[currency]["p"][1],
+                    data_raw[currency]["t"][0],
+                    data_raw[currency]["t"][1],
+                    data_raw[currency]["l"][0],
+                    data_raw[currency]["l"][1],
+                    data_raw[currency]["h"][0],
+                    data_raw[currency]["h"][1],
+                    data_raw[currency]["o"],
+                ]
+
+            inner_df = pd.DataFrame([values], columns=columns)
             data = pd.concat([data, inner_df], ignore_index=True)
 
             return data
@@ -374,12 +378,13 @@ class Kapi:
             ]
 
             data = pd.DataFrame(columns=columns)
-            data_raw = res["result"][pair]
+            correct_pair = list(res["result"].keys())[0]
+            data_raw = res["result"][correct_pair]
             last = res["result"]["last"]
 
             for currency in data_raw:
                 inner_df = pd.DataFrame([[
-                    pair,
+                    correct_pair,
                     currency[0],
                     currency[1],
                     currency[2],
